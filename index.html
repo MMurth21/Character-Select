@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Character Select</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #1a1a1a;
+        margin: 0;
+      }
+      button {
+        padding: 20px 40px;
+        font-size: 24px;
+        cursor: pointer;
+        background: #003399;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        transition: transform 0.2s;
+      }
+      button:hover {
+        background: #0044cc;
+      }
+      button:active {
+        transform: scale(0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <button id="confetti-btn">🎉 Click me!</button>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
