@@ -143,6 +143,34 @@
       flex-shrink: 0;
     }
 
+    /* ── BMW VIBE TAGS ────────────────────────────────────────────── */
+    .vibe-tags {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      z-index: 10;
+      font-family: 'Roboto Mono', 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #FFA500;
+      opacity: 0.3;
+      filter: blur(1px);
+      transition: all 0.4s ease;
+    }
+
+    .vibe-tags li { line-height: 1.9; }
+
+    [data-vibe="Sophisticated"]:hover .vibe-tags {
+      opacity: 1;
+      filter: blur(0);
+      text-shadow: 0 0 8px rgba(255, 165, 0, 0.6);
+    }
+
     /* ── Specs panel (revealed on click) ──────────────────────────── */
     .specs-panel {
       position: absolute;
@@ -301,6 +329,12 @@
       data-color="#003399"
       data-audio="bmw-e39-m5"
       style="--accent: #003399;">
+      <ul class="vibe-tags">
+        <li>Velvet-Sledgehammer</li>
+        <li>Analog-Tactile</li>
+        <li>Autobahn-Poised</li>
+        <li>Commanding-Presence</li>
+      </ul>
       <div class="card-info">
         <div class="card-number">01 / 04</div>
         <h2 class="card-name">BMW E39 M5</h2>
