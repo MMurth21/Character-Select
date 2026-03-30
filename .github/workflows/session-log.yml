@@ -1,0 +1,40 @@
+name: Session Work Log
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'          # prevents the bot's own commit from re-triggering this
+
+permissions:
+  contents: write          # needed to push docs back to the repo
+
+concurrency:
+  group: session-log
+  cancel-in-progress: true
+
+jobs:
+  generate-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate session log + code archive
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GIT_BEFORE: ${{ github.event.before }}
+          GIT_AFTER:  ${{ github.sha }}
+          REPO_NAME:  ${{ github.repository }}
+        run: python3 .github/scripts/generate_log.py
+
+      - name: Commit and push docs
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --staged --quiet || \
+            git commit -m "docs: session log $(date -u +%Y-%m-%d) [skip ci]" && \
+            git push
