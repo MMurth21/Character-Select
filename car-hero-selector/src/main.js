@@ -352,11 +352,12 @@ class AudioController {
   constructor() {
     this._current = null;
     this._pool = {};   // preloaded Audio objects
+    const base = import.meta.env.BASE_URL;
     this._audioMap = {
-      'bmw-e39-m5':        '/audio/bmw-e39-m5.mp3',
-      'porsche-997':       '/audio/porsche-997.mp3',
-      'toyota-sienna':     '/audio/toyota-sienna.mp3',
-      'kia-sportage-phev': '/audio/kia-sportage-phev.mp3',
+      'bmw-e39-m5':        `${base}audio/bmw-e39-m5.mp3`,
+      'porsche-997':       `${base}audio/porsche-997.mp3`,
+      'toyota-sienna':     `${base}audio/toyota-sienna.mp3`,
+      'kia-sportage-phev': `${base}audio/kia-sportage-phev.mp3`,
     };
   }
 
