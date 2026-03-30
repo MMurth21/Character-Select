@@ -354,6 +354,7 @@ body {
   align-items: center;
   position: relative;
   min-height: 0;
+  perspective: 900px;
 }
 
 /* Ground shadow — positioned just below logo centre */
@@ -383,8 +384,8 @@ body {
 }
 
 @keyframes logo-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
 }
 
 /* ── Vibe pulse animations ───────────────────────────────────────────── */
