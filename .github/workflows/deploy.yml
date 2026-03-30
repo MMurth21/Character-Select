@@ -26,17 +26,20 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: car-hero-selector/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+        working-directory: car-hero-selector
 
       - name: Build
         run: npm run build
+        working-directory: car-hero-selector
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: car-hero-selector/dist
 
   deploy:
     needs: build
