@@ -151,7 +151,7 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      z-index: 10;
+      z-index: 30;
       font-family: 'Roboto Mono', 'Courier New', monospace;
       font-size: 13px;
       font-weight: 700;
@@ -329,12 +329,6 @@
       data-color="#003399"
       data-audio="bmw-e39-m5"
       style="--accent: #003399;">
-      <ul class="vibe-tags">
-        <li>Velvet-Sledgehammer</li>
-        <li>Analog-Tactile</li>
-        <li>Autobahn-Poised</li>
-        <li>Commanding-Presence</li>
-      </ul>
       <div class="card-info">
         <div class="card-number">01 / 04</div>
         <h2 class="card-name">BMW E39 M5</h2>
@@ -353,6 +347,13 @@
         </ul>
         <div class="specs-dismiss">Click to close</div>
       </div>
+      <!-- Last in DOM + z-index 30 so backdrop-filter compositing layers can't bury it -->
+      <ul class="vibe-tags">
+        <li>Velvet-Sledgehammer</li>
+        <li>Analog-Tactile</li>
+        <li>Autobahn-Poised</li>
+        <li>Commanding-Presence</li>
+      </ul>
     </section>
 
     <section class="car-card"
