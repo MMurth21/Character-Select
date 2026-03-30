@@ -529,7 +529,7 @@ const cards = cars.map((car, i) => {
     </div>
 
     <!-- Specs panel: slides up on tap — brand logo lives here, below stats -->
-    <div class="card-specs-panel">
+    <div class="card-specs-panel" style="background:${car.gradient};">
       <div class="specs-header">
         <div class="specs-car-name">${car.name}</div>
         <div class="specs-close">CLOSE</div>

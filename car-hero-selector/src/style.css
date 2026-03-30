@@ -273,10 +273,8 @@ body {
   padding: 28px 32px 28px;
   transform: translateY(100%);
   transition: transform 440ms var(--ease-snap);
-  background: rgba(0,0,0,0.72);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  overflow-y: auto;
+  background: #08080f;
+  overflow: hidden;
 }
 
 .rolo-card.specs-open .card-specs-panel { transform: translateY(0); }
@@ -350,34 +348,35 @@ body {
 
 /* ── Manufacturer logo (below spec stats) ────────────────────────────── */
 .specs-brand-logo {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 28px 0 20px;
-  flex-shrink: 0;
   position: relative;
+  min-height: 0;
 }
 
-/* Ground shadow — stays fixed while logo rotates above it */
+/* Ground shadow — positioned just below logo centre */
 .specs-brand-logo::after {
   content: '';
   position: absolute;
-  bottom: 6px;
+  top: calc(50% + 2px);
   left: 50%;
   transform: translateX(-50%);
-  width: 150px;
-  height: 20px;
+  width: 55%;
+  height: 22px;
   border-radius: 50%;
   background: var(--logo-shadow-color, rgba(0,0,0,0.7));
-  filter: blur(14px);
+  filter: blur(16px);
   pointer-events: none;
   z-index: 0;
 }
 
 .brand-svg {
-  height: 120px;
+  max-height: 64%;
+  height: auto;
   width: auto;
-  max-width: 260px;
+  max-width: 82%;
   position: relative;
   z-index: 1;
   animation: logo-spin 14s linear infinite;
