@@ -1,38 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Character Select</title>
-    <style>
-      body {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #1a1a1a;
-        margin: 0;
-      }
-      button {
-        padding: 20px 40px;
-        font-size: 24px;
-        cursor: pointer;
-        background: #003399;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        transition: transform 0.2s;
-      }
-      button:hover {
-        background: #0044cc;
-      }
-      button:active {
-        transform: scale(0.95);
-      }
-    </style>
-  </head>
-  <body>
-    <button id="confetti-btn">🎉 Click me!</button>
-    <script type="module" src="/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Select</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #090a0e;
+      transition: background-color 350ms ease;
+    }
+
+    .hero-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      width: 100vw;
+      height: 100vh;
+      transition: grid-template-columns 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Expand hovered card to 60%; remaining three share 40% */
+    .hero-gallery:has(.car-card:nth-child(1):hover) { grid-template-columns: 60% 1fr 1fr 1fr; }
+    .hero-gallery:has(.car-card:nth-child(2):hover) { grid-template-columns: 1fr 60% 1fr 1fr; }
+    .hero-gallery:has(.car-card:nth-child(3):hover) { grid-template-columns: 1fr 1fr 60% 1fr; }
+    .hero-gallery:has(.car-card:nth-child(4):hover) { grid-template-columns: 1fr 1fr 1fr 60%; }
+
+    .car-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 36px 28px;
+      transition: background 350ms ease;
+    }
+
+    .car-card:last-child { border-right: none; }
+
+    /* Per-card gradient backgrounds */
+    .car-card[data-vibe="Sophisticated"]        { background: linear-gradient(170deg, #001a66 0%, #000820 100%); }
+    .car-card[data-vibe="Atmospheric Dominance"] { background: linear-gradient(170deg, #000e22 0%, #000000 100%); }
+    .car-card[data-vibe="Practical"]             { background: linear-gradient(170deg, #4a5560 0%, #262d34 100%); }
+    .car-card[data-vibe="Eco-Tech"]              { background: linear-gradient(170deg, #1f1f1f 0%, #0d0d0d 100%); }
+
+    /* Accent bar on left edge — car colour */
+    .car-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0.8;
+      transition: opacity 350ms;
+    }
+
+    .car-card:hover::before { opacity: 1; }
+
+    /* Faint vibe label — large ghost text */
+    .car-card::after {
+      content: attr(data-vibe);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(18px, 3.5vw, 42px);
+      color: rgba(255,255,255,0.04);
+      text-transform: uppercase;
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+      pointer-events: none;
+      transition: color 350ms;
+    }
+
+    .car-card:hover::after { color: rgba(255,255,255,0.07); }
+
+    .card-number {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 10px;
+    }
+
+    .card-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 4vw, 58px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: #fff;
+      transition: color 350ms;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-year {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.35);
+      margin-top: 8px;
+    }
+
+    .card-vibe-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+
+    .car-card:hover .card-vibe-tag {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .vibe-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <main class="hero-gallery">
+
+    <section class="car-card"
+      data-vibe="Sophisticated"
+      data-color="#003399"
+      style="--accent: #003399;">
+      <div class="card-number">01 / 04</div>
+      <h2 class="card-name">BMW E39 M5</h2>
+      <div class="card-year">2003 · S62 V8</div>
+      <div class="card-vibe-tag">
+        <span class="vibe-dot"></span>
+        Sophisticated
+      </div>
+    </section>
+
+    <section class="car-card"
+      data-vibe="Atmospheric Dominance"
+      data-color="#001B3A"
+      style="--accent: #001B3A;">
+      <div class="card-number">02 / 04</div>
+      <h2 class="card-name">Porsche 911</h2>
+      <div class="card-year">997 · 2006 · M97 Flat-6</div>
+      <div class="card-vibe-tag">
+        <span class="vibe-dot"></span>
+        Atmospheric Dominance
+      </div>
+    </section>
+
+    <section class="car-card"
+      data-vibe="Practical"
+      data-color="#708090"
+      style="--accent: #708090;">
+      <div class="card-number">03 / 04</div>
+      <h2 class="card-name">Toyota Sienna</h2>
+      <div class="card-year">2011 · 2GR-FE V6</div>
+      <div class="card-vibe-tag">
+        <span class="vibe-dot"></span>
+        Practical
+      </div>
+    </section>
+
+    <section class="car-card"
+      data-vibe="Eco-Tech"
+      data-color="#3C3C3C"
+      style="--accent: #64c896;">
+      <div class="card-number">04 / 04</div>
+      <h2 class="card-name">Kia Sportage</h2>
+      <div class="card-year">PHEV · 2023 · G4FJ</div>
+      <div class="card-vibe-tag">
+        <span class="vibe-dot"></span>
+        Eco-Tech
+      </div>
+    </section>
+
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
 </html>
