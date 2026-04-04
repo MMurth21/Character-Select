@@ -1,0 +1,452 @@
+/* ── Reset ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --card-w: min(75vw, 680px);
+  --card-h: min(85vh, 820px);
+  --ease-snap: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-card: 480ms var(--ease-snap);
+  --transition-bg: 350ms ease;
+}
+
+body {
+  background: #090a0e;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: 'Barlow Condensed', sans-serif;
+  transition: background var(--transition-bg);
+  user-select: none;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────── */
+.site-header {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 40px 14px;
+  gap: 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.header-label {
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.45em;
+  color: rgba(255,255,255,0.9);
+}
+
+.header-sub {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: rgba(255,255,255,0.28);
+}
+
+/* ── Stage ───────────────────────────────────────────────────────────── */
+.rolodex-stage {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Nav buttons ─────────────────────────────────────────────────────── */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.5);
+  font-size: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 200ms, color 200ms;
+  line-height: 1;
+  padding-bottom: 2px;
+}
+
+.nav-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.9); }
+.nav-prev { left: 16px; }
+.nav-next { right: 16px; }
+
+/* ── Footer / dots ───────────────────────────────────────────────────── */
+.rolo-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 0 20px;
+}
+
+.dot-track { display: flex; gap: 10px; align-items: center; }
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: background 300ms, width 300ms var(--ease-bounce);
+}
+
+.dot.active {
+  background: rgba(255,255,255,0.85);
+  width: 22px;
+  border-radius: 3px;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────── */
+.rolo-card {
+  position: absolute;
+  width: var(--card-w);
+  height: var(--card-h);
+  top: 50%;
+  left: 50%;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: grab;
+  will-change: transform, opacity;
+  transition: transform var(--transition-card), opacity var(--transition-card), filter var(--transition-card);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.07);
+}
+
+.rolo-card.dragging { transition: none; cursor: grabbing; }
+
+/* ── Card layers ─────────────────────────────────────────────────────── */
+.card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.card-accent-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 20;
+  opacity: 0.9;
+}
+
+/* ── Front face ──────────────────────────────────────────────────────── */
+.card-front {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 32px 28px;
+}
+
+.car-meta { display: flex; flex-direction: column; gap: 6px; }
+
+.car-number {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.28);
+}
+
+.car-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(42px, 7vw, 72px);
+  line-height: 0.9;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.car-year {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+/* ── Silhouette ──────────────────────────────────────────────────────── */
+.car-silhouette-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.rolo-card.active .car-silhouette-wrap {
+  animation: float 4s ease-in-out infinite;
+}
+
+.rolo-card.specs-open .car-silhouette-wrap { animation: none; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+.car-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 12px 32px rgba(0,0,0,0.6));
+  transition: filter 300ms;
+}
+
+.rolo-card.active .car-svg {
+  filter: drop-shadow(0 16px 40px rgba(0,0,0,0.7)) drop-shadow(0 0 24px rgba(255,255,255,0.06));
+}
+
+/* ── Vibe row ────────────────────────────────────────────────────────── */
+.car-vibe-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.car-vibe {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+
+.vibe-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tap-hint {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tap-hint::before { content: '↑'; font-size: 11px; }
+
+/* ── Specs panel ─────────────────────────────────────────────────────── */
+.card-specs-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 32px 28px;
+  transform: translateY(100%);
+  transition: transform 440ms var(--ease-snap);
+  background: #08080f;
+  overflow: hidden;
+}
+
+.rolo-card.specs-open .card-specs-panel { transform: translateY(0); }
+
+.specs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.specs-car-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 0.92;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.specs-close {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.specs-close::after { content: '↓'; font-size: 11px; }
+
+/* Spec rows — 2-column grid */
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-shrink: 0;
+}
+
+.spec-item {
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spec-item:nth-child(odd)  { padding-right: 20px; border-right: 1px solid rgba(255,255,255,0.07); }
+.spec-item:nth-child(even) { padding-left: 20px; }
+
+.spec-key {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.3);
+}
+
+.spec-val {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.04em;
+}
+
+/* ── Manufacturer logo (below spec stats) ────────────────────────────── */
+.specs-brand-logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 0;
+  perspective: 900px;
+}
+
+/* Ground shadow — positioned just below logo centre */
+.specs-brand-logo::after {
+  content: '';
+  position: absolute;
+  top: calc(50% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--logo-shadow-color, rgba(0,0,0,0.7));
+  filter: blur(16px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.brand-svg {
+  max-height: 64%;
+  height: auto;
+  width: auto;
+  max-width: 82%;
+  position: relative;
+  z-index: 1;
+  animation: logo-spin 14s linear infinite;
+}
+
+@keyframes logo-spin {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+/* ── Vibe pulse animations ───────────────────────────────────────────── */
+@keyframes vibe-pulse {
+  0%   { text-shadow: none; }
+  20%  { text-shadow: 0 0 14px rgba(255,255,255,0.9), 0 0 30px rgba(255,255,255,0.4); }
+  60%  { text-shadow: 0 0 8px rgba(255,255,255,0.5); }
+  100% { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+}
+
+@keyframes porsche-pulse {
+  0%   { letter-spacing: 0.20em; text-shadow: none; color: rgba(255,255,255,0.75); transform: none; }
+  12%  { letter-spacing: 0.34em; text-shadow: 0 0 10px #fff, 0 0 24px #4488ff, 0 0 55px rgba(0,27,58,0.8); color: #a8c8ff; transform: scaleX(1.05); }
+  28%  { letter-spacing: 0.22em; text-shadow: 0 0 4px #6699ff; transform: none; }
+  44%  { letter-spacing: 0.38em; text-shadow: 0 0 16px #fff, 0 0 40px #4488ff; color: #c0d8ff; transform: scaleX(1.07); }
+  65%  { letter-spacing: 0.20em; transform: none; }
+  80%  { letter-spacing: 0.30em; text-shadow: 0 0 12px #4488ff, 0 0 30px rgba(0,60,180,0.5); }
+  100% { letter-spacing: 0.22em; text-shadow: 0 0 8px rgba(100,150,255,0.5); color: #a0bfff; }
+}
+
+.car-vibe.pulse         { animation: vibe-pulse     1.4s ease-out forwards; }
+.car-vibe.pulse-porsche { animation: porsche-pulse  1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+/* ── Swipe hint ──────────────────────────────────────────────────────── */
+.swipe-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.22);
+  pointer-events: none;
+  animation: hint-fade 3s ease-out 1.5s forwards;
+  opacity: 0;
+}
+
+@keyframes hint-fade {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  20%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.hint-arrow {
+  width: 32px;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  position: relative;
+}
+
+.hint-arrow::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: -3px;
+  border: 4px solid transparent;
+  border-left-color: rgba(255,255,255,0.3);
+}

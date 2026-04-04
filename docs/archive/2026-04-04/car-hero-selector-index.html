@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Hero Selector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="site-header">
+      <span class="header-label">SELECT YOUR MACHINE</span>
+      <span class="header-sub">SWIPE TO BROWSE · TAP TO REVEAL SPECS</span>
+    </header>
+    <div class="rolodex-stage" id="stage">
+      <div class="card-track" id="track"></div>
+      <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous">&#8249;</button>
+      <button class="nav-btn nav-next" id="nextBtn" aria-label="Next">&#8250;</button>
+    </div>
+    <footer class="rolo-footer">
+      <div class="dot-track" id="dots"></div>
+    </footer>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
