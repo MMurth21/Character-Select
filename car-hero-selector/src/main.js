@@ -702,6 +702,12 @@ class AudioController {
     // Gear shift sound — "Gear Shift Into Drive" by Mike Koenig, SoundBible.com (CC BY 3.0)
     this._gearShift = new Audio('https://soundbible.com/mp3/Gear%20Shift%20Into%20Drive-SoundBible.com-2101462767.mp3');
     this._gearShift.volume = 0.65;
+    // Ignition — "ignition turn car start" by greatsoundstube, Freesound.org (CC0)
+    this._ignition = new Audio('https://cdn.freesound.org/previews/629/629313_13885154-hq.mp3');
+    this._ignition.volume = 0.70;
+    // EV startup — "Electric motor engine start stop" by kentspublicdomain, Freesound.org (CC0)
+    this._evStartup = new Audio('https://cdn.freesound.org/previews/476/476943_5583936-hq.mp3');
+    this._evStartup.volume = 0.70;
   }
 
   // Preload all files silently in the background
@@ -714,11 +720,19 @@ class AudioController {
       this._pool[id] = a;
     });
     this._gearShift.load();
+    this._ignition.load();
+    this._evStartup.load();
   }
 
   playGearShift() {
     this._gearShift.currentTime = 0;
     this._gearShift.play().catch(() => {});
+  }
+
+  playStartup(carId) {
+    const sfx = carId === 'kia-sportage-phev' ? this._evStartup : this._ignition;
+    sfx.currentTime = 0;
+    sfx.play().catch(() => {});
   }
 
   play(carId) {
@@ -965,6 +979,7 @@ function handleTap(card, e) {
   card.classList.toggle('specs-open', specsOpen);
 
   if (specsOpen) {
+    audio.playStartup(cars[currentIndex].id);
     audio.play(cars[currentIndex].id);
   } else {
     audio.stop();
