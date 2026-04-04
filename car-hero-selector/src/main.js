@@ -965,7 +965,6 @@ function handleTap(card, e) {
   card.classList.toggle('specs-open', specsOpen);
 
   if (specsOpen) {
-    audio.playGearShift();
     audio.play(cars[currentIndex].id);
   } else {
     audio.stop();
