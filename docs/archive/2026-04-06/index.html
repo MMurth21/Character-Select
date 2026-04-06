@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Select</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #090a0e;
+      transition: background-color 300ms ease;
+    }
+
+    /* ── Grid layout ──────────────────────────────────────────────── */
+    .hero-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      width: 100vw;
+      height: 100vh;
+      transition: grid-template-columns 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hero-gallery:has(.car-card:nth-child(1):hover) { grid-template-columns: 60% 1fr 1fr 1fr; }
+    .hero-gallery:has(.car-card:nth-child(2):hover) { grid-template-columns: 1fr 60% 1fr 1fr; }
+    .hero-gallery:has(.car-card:nth-child(3):hover) { grid-template-columns: 1fr 1fr 60% 1fr; }
+    .hero-gallery:has(.car-card:nth-child(4):hover) { grid-template-columns: 1fr 1fr 1fr 60%; }
+
+    /* ── Base card ────────────────────────────────────────────────── */
+    .car-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 36px 28px;
+      transition: background 300ms ease;
+    }
+
+    .car-card:last-child { border-right: none; }
+
+    .car-card[data-vibe="Sophisticated"]        { background: linear-gradient(170deg, #001a66 0%, #000820 100%); }
+    .car-card[data-vibe="Atmospheric Dominance"] { background: linear-gradient(170deg, #000e22 0%, #000000 100%); }
+    .car-card[data-vibe="Practical"]             { background: linear-gradient(170deg, #4a5560 0%, #262d34 100%); }
+    .car-card[data-vibe="Eco-Tech"]              { background: linear-gradient(170deg, #1f1f1f 0%, #0d0d0d 100%); }
+
+    /* Left accent bar */
+    .car-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent);
+      opacity: 0.8;
+      transition: opacity 300ms;
+    }
+    .car-card:hover::before { opacity: 1; }
+
+    /* Ghost vibe watermark */
+    .car-card::after {
+      content: attr(data-vibe);
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(18px, 3.5vw, 42px);
+      color: rgba(255,255,255,0.04);
+      text-transform: uppercase;
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+      pointer-events: none;
+      transition: color 300ms;
+    }
+    .car-card:hover::after { color: rgba(255,255,255,0.07); }
+
+    /* ── Card info panel ──────────────────────────────────────────── */
+    .card-info {
+      position: relative;
+      z-index: 1;
+      transition: box-shadow 300ms ease;
+    }
+
+    .card-number {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 10px;
+    }
+
+    .card-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 4vw, 58px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 300ms, text-shadow 300ms, filter 300ms;
+    }
+
+    .card-year {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.35);
+      margin-top: 8px;
+    }
+
+    .card-vibe-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 300ms ease, transform 300ms ease;
+    }
+    .car-card:hover .card-vibe-tag { opacity: 1; transform: translateY(0); }
+
+    .vibe-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── BMW VIBE TAGS ────────────────────────────────────────────── */
+    .vibe-tags {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      z-index: 30;
+      font-family: 'Roboto Mono', 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #FFA500;
+      opacity: 0.3;
+      filter: blur(1px);
+      transition: all 0.4s ease;
+    }
+
+    .vibe-tags li { line-height: 1.9; }
+
+    [data-vibe="Sophisticated"]:hover .vibe-tags {
+      opacity: 1;
+      filter: blur(0);
+      text-shadow: 0 0 8px rgba(255, 165, 0, 0.6);
+    }
+
+    /* ── Specs panel (revealed on click) ──────────────────────────── */
+    .specs-panel {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 28px;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 300ms ease, transform 300ms ease;
+    }
+
+    .car-card.show-specs .specs-panel {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .specs-panel-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(22px, 3vw, 40px);
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .specs-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      list-style: none;
+    }
+
+    .specs-list li {
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .specs-list li:nth-child(odd)  { padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.06); }
+    .specs-list li:nth-child(even) { padding-left: 14px; }
+
+    .spec-key {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      color: rgba(255,255,255,0.28);
+      text-transform: uppercase;
+    }
+
+    .spec-val {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.03em;
+    }
+
+    .specs-dismiss {
+      margin-top: 20px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.20);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ── RACY PULSE — Porsche ─────────────────────────────────────── */
+    @keyframes racy-pulse {
+      0%, 100% { text-shadow: none; filter: brightness(1); }
+      50% {
+        text-shadow:
+          0 0 10px rgba(80,130,255,0.75),
+          0 0 24px rgba(40,80,200,0.45),
+          0 0 48px rgba(20,50,160,0.22);
+        filter: brightness(1.18);
+      }
+    }
+    [data-vibe="Atmospheric Dominance"] .card-name {
+      animation: racy-pulse 2.2s ease-in-out infinite;
+    }
+
+    /* ── GLASSMORPHIC STATS PANEL — BMW ───────────────────────────── */
+    [data-vibe="Sophisticated"] .card-info {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 8px;
+      padding: 18px 20px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 0 28px rgba(0,51,153,0.38),
+        0 0 56px rgba(0,51,153,0.14);
+    }
+    [data-vibe="Sophisticated"]:hover .card-info {
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.14),
+        0 0 38px rgba(0,51,153,0.55),
+        0 0 72px rgba(0,51,153,0.22);
+    }
+
+    /* ── UTILITARIAN / SCHEMATIC — Toyota + Kia ──────────────────── */
+    [data-vibe="Practical"] .card-name,
+    [data-vibe="Eco-Tech"]  .card-name {
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 600;
+      font-size: clamp(16px, 2.6vw, 36px);
+      letter-spacing: 0.04em;
+    }
+
+    [data-vibe="Practical"],
+    [data-vibe="Eco-Tech"] {
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+    }
+
+    [data-vibe="Practical"] .card-info,
+    [data-vibe="Eco-Tech"]  .card-info { padding-top: 14px; }
+
+    [data-vibe="Practical"] .card-info::before,
+    [data-vibe="Eco-Tech"]  .card-info::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 10px; height: 10px;
+      border-top: 1px solid rgba(255,255,255,0.30);
+      border-left: 1px solid rgba(255,255,255,0.30);
+    }
+    [data-vibe="Practical"] .card-info::after,
+    [data-vibe="Eco-Tech"]  .card-info::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 10px; height: 10px;
+      border-top: 1px solid rgba(255,255,255,0.30);
+      border-right: 1px solid rgba(255,255,255,0.30);
+    }
+  </style>
+</head>
+<body>
+  <main class="hero-gallery">
+
+    <section class="car-card"
+      data-vibe="Sophisticated"
+      data-color="#003399"
+      data-audio="bmw-e39-m5"
+      style="--accent: #003399;">
+      <div class="card-info">
+        <div class="card-number">01 / 04</div>
+        <h2 class="card-name">BMW E39 M5</h2>
+        <div class="card-year">2003 · S62 V8</div>
+        <div class="card-vibe-tag"><span class="vibe-dot"></span>Sophisticated</div>
+      </div>
+      <div class="specs-panel">
+        <div class="specs-panel-title">BMW E39 M5</div>
+        <ul class="specs-list">
+          <li><span class="spec-key">Engine</span><span class="spec-val">S62 V8 · 5.0L</span></li>
+          <li><span class="spec-key">Power</span><span class="spec-val">394 hp / 292 kw</span></li>
+          <li><span class="spec-key">Torque</span><span class="spec-val">500 Nm / 369 lb-ft</span></li>
+          <li><span class="spec-key">Weight</span><span class="spec-val">1795 kg</span></li>
+          <li><span class="spec-key">Drive</span><span class="spec-val">RWD · 6-Speed Manual</span></li>
+          <li><span class="spec-key">V-Max</span><span class="spec-val">250 km/h (limited)</span></li>
+        </ul>
+        <div class="specs-dismiss">Click to close</div>
+      </div>
+      <!-- Last in DOM + z-index 30 so backdrop-filter compositing layers can't bury it -->
+      <ul class="vibe-tags">
+        <li>Velvet-Sledgehammer</li>
+        <li>Analog-Tactile</li>
+        <li>Autobahn-Poised</li>
+        <li>Commanding-Presence</li>
+      </ul>
+    </section>
+
+    <section class="car-card"
+      data-vibe="Atmospheric Dominance"
+      data-color="#001B3A"
+      data-audio="porsche-997"
+      style="--accent: #001B3A;">
+      <div class="card-info">
+        <div class="card-number">02 / 04</div>
+        <h2 class="card-name">Porsche 911</h2>
+        <div class="card-year">997 · 2006 · M97 Flat-6</div>
+        <div class="card-vibe-tag"><span class="vibe-dot"></span>Atmospheric Dominance</div>
+      </div>
+      <div class="specs-panel">
+        <div class="specs-panel-title">Porsche 911</div>
+        <ul class="specs-list">
+          <li><span class="spec-key">Engine</span><span class="spec-val">M97 Flat-6 · 3.6L</span></li>
+          <li><span class="spec-key">Power</span><span class="spec-val">325 hp / 242 kw</span></li>
+          <li><span class="spec-key">Torque</span><span class="spec-val">370 Nm / 273 lb-ft</span></li>
+          <li><span class="spec-key">Weight</span><span class="spec-val">1395 kg</span></li>
+          <li><span class="spec-key">Drive</span><span class="spec-val">RWD · 6-Speed Manual</span></li>
+          <li><span class="spec-key">V-Max</span><span class="spec-val">285 km/h</span></li>
+        </ul>
+        <div class="specs-dismiss">Click to close</div>
+      </div>
+    </section>
+
+    <section class="car-card"
+      data-vibe="Practical"
+      data-color="#708090"
+      data-audio="toyota-sienna"
+      style="--accent: #708090;">
+      <div class="card-info">
+        <div class="card-number">03 / 04</div>
+        <h2 class="card-name">Toyota Sienna</h2>
+        <div class="card-year">2011 · 2GR-FE V6</div>
+        <div class="card-vibe-tag"><span class="vibe-dot"></span>Practical</div>
+      </div>
+      <div class="specs-panel">
+        <div class="specs-panel-title">Toyota Sienna</div>
+        <ul class="specs-list">
+          <li><span class="spec-key">Engine</span><span class="spec-val">2GR-FE V6 · 3.5L</span></li>
+          <li><span class="spec-key">Power</span><span class="spec-val">266 hp / 198 kw</span></li>
+          <li><span class="spec-key">Torque</span><span class="spec-val">332 Nm / 245 lb-ft</span></li>
+          <li><span class="spec-key">Weight</span><span class="spec-val">2068 kg</span></li>
+          <li><span class="spec-key">Drive</span><span class="spec-val">FWD · 6-Speed Auto</span></li>
+          <li><span class="spec-key">V-Max</span><span class="spec-val">185 km/h</span></li>
+        </ul>
+        <div class="specs-dismiss">Click to close</div>
+      </div>
+    </section>
+
+    <section class="car-card"
+      data-vibe="Eco-Tech"
+      data-color="#3C3C3C"
+      data-audio="kia-sportage-phev"
+      style="--accent: #64c896;">
+      <div class="card-info">
+        <div class="card-number">04 / 04</div>
+        <h2 class="card-name">Kia Sportage</h2>
+        <div class="card-year">PHEV · 2023 · G4FJ</div>
+        <div class="card-vibe-tag"><span class="vibe-dot"></span>Eco-Tech</div>
+      </div>
+      <div class="specs-panel">
+        <div class="specs-panel-title">Kia Sportage PHEV</div>
+        <ul class="specs-list">
+          <li><span class="spec-key">Engine</span><span class="spec-val">G4FJ PHEV · 1.6T + Motor</span></li>
+          <li><span class="spec-key">Power</span><span class="spec-val">261 hp combined</span></li>
+          <li><span class="spec-key">Torque</span><span class="spec-val">350 Nm / 258 lb-ft</span></li>
+          <li><span class="spec-key">Weight</span><span class="spec-val">1895 kg</span></li>
+          <li><span class="spec-key">Drive</span><span class="spec-val">AWD · 6-Speed Auto</span></li>
+          <li><span class="spec-key">V-Max</span><span class="spec-val">191 km/h</span></li>
+        </ul>
+        <div class="specs-dismiss">Click to close</div>
+      </div>
+    </section>
+
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
