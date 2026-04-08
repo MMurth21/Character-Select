@@ -16,6 +16,7 @@ const cars = [
     drivetrain: 'RWD · 6-Speed Manual',
     topSpeed: '250 km/h (limited)',
     gradient: 'linear-gradient(150deg, #003399 0%, #001a66 55%, #000820 100%)',
+    specsBg: 'images/bmw-m-bg.jpg',
   },
   {
     id: 'porsche-997',
@@ -31,6 +32,7 @@ const cars = [
     drivetrain: 'RWD · 6-Speed Manual',
     topSpeed: '285 km/h',
     gradient: 'linear-gradient(150deg, #001B3A 0%, #000e22 55%, #000000 100%)',
+    specsBg: 'images/porsche-bg.jpg',
     isPorsche: true,
   },
   {
@@ -713,7 +715,7 @@ const cards = cars.map((car, i) => {
     </div>
 
     <!-- Specs panel: slides up on tap — brand logo lives here, below stats -->
-    <div class="card-specs-panel" style="background:${car.gradient};">
+    <div class="card-specs-panel" style="${car.specsBg ? `background: linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)), url('${car.specsBg}') center/cover no-repeat` : `background:${car.gradient}`};">
       <div class="specs-header">
         <div class="specs-car-name">${car.name}</div>
         <div class="specs-close">CLOSE</div>
