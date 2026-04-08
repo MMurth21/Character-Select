@@ -17,7 +17,6 @@ const cars = [
     topSpeed: '250 km/h (limited)',
     gradient: 'linear-gradient(150deg, #003399 0%, #001a66 55%, #000820 100%)',
     specsBg: 'images/bmw-m-leather.jpg',
-    wheels: [{x:21, y:76, r:13}, {x:68, y:76, r:13}],
   },
   {
     id: 'porsche-997',
@@ -34,7 +33,6 @@ const cars = [
     topSpeed: '285 km/h',
     gradient: 'linear-gradient(150deg, #001B3A 0%, #000e22 55%, #000000 100%)',
     specsBg: 'images/porsche-carrera-leather.jpg',
-    wheels: [{x:19, y:74, r:12}, {x:65, y:74, r:13}],
     isPorsche: true,
   },
   {
@@ -51,7 +49,6 @@ const cars = [
     drivetrain: 'FWD · 6-Speed Auto',
     topSpeed: '185 km/h',
     gradient: 'linear-gradient(150deg, #708090 0%, #4a5560 55%, #262d34 100%)',
-    wheels: [{x:18, y:78, r:14}, {x:66, y:78, r:14}],
   },
   {
     id: 'kia-sportage-phev',
@@ -67,7 +64,6 @@ const cars = [
     drivetrain: 'AWD · 6-Speed Auto',
     topSpeed: '191 km/h',
     gradient: 'linear-gradient(150deg, #3C3C3C 0%, #1f1f1f 55%, #0d0d0d 100%)',
-    wheels: [{x:19, y:77, r:13}, {x:67, y:77, r:14}],
   },
 ];
 
