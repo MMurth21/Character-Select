@@ -262,36 +262,7 @@ const silhouettes = {
 
   'toyota-sienna': `<img src="images/toyota-sienna-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="Toyota Sienna">`,
 
-  'kia-sportage-phev': `
-    <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" class="car-svg">
-      <defs>
-        <linearGradient id="g-kia" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.17)"/>
-          <stop offset="100%" stop-color="rgba(255,255,255,0.04)"/>
-        </linearGradient>
-      </defs>
-      <path d="M55,148 L55,115 Q72,95 105,84 Q140,64 185,56 Q220,50 285,50 Q335,50 375,62 Q410,75 428,105 L435,132 L435,148 Z" fill="url(#g-kia)" stroke="rgba(255,255,255,0.48)" stroke-width="1.5"/>
-      <rect x="185" y="44" width="180" height="12" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.36)" stroke-width="1"/>
-      <path d="M185,56 Q195,48 210,44 L270,44 L270,56 Z" fill="rgba(150,200,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-      <path d="M285,44 L345,44 Q360,48 370,60 L285,60 Z" fill="rgba(150,200,255,0.10)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-      <rect x="210" y="56" width="75" height="46" rx="3" fill="rgba(150,200,255,0.08)" stroke="rgba(255,255,255,0.20)" stroke-width="1"/>
-      <rect x="285" y="56" width="85" height="46" rx="3" fill="rgba(150,200,255,0.08)" stroke="rgba(255,255,255,0.20)" stroke-width="1"/>
-      <path d="M55,115 Q85,105 110,96 L185,70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-      <path d="M60,130 Q200,120 390,126" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
-      <path d="M55,140 L435,140 L435,148 L55,148 Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
-      <ellipse cx="142" cy="148" rx="48" ry="11" fill="none" stroke="rgba(255,255,255,0.40)" stroke-width="1.5"/>
-      <ellipse cx="375" cy="148" rx="48" ry="11" fill="none" stroke="rgba(255,255,255,0.40)" stroke-width="1.5"/>
-      <circle cx="142" cy="155" r="37" fill="rgba(8,8,12,0.72)" stroke="rgba(255,255,255,0.50)" stroke-width="2"/>
-      <circle cx="142" cy="155" r="21" fill="none" stroke="rgba(255,255,255,0.26)" stroke-width="1.5"/>
-      <circle cx="142" cy="155" r="6" fill="rgba(255,255,255,0.50)"/>
-      <circle cx="375" cy="155" r="37" fill="rgba(8,8,12,0.72)" stroke="rgba(255,255,255,0.50)" stroke-width="2"/>
-      <circle cx="375" cy="155" r="21" fill="none" stroke="rgba(255,255,255,0.26)" stroke-width="1.5"/>
-      <circle cx="375" cy="155" r="6" fill="rgba(255,255,255,0.50)"/>
-      <circle cx="65" cy="102" r="7" fill="rgba(80,220,140,0.35)" stroke="rgba(100,255,180,0.80)" stroke-width="1.5"/>
-      <path d="M62,105 L65,99 L68,105" fill="none" stroke="rgba(100,255,180,0.90)" stroke-width="1.5" stroke-linejoin="round"/>
-      <path d="M62,100 L90,96 L95,104 L62,108 Z" fill="rgba(220,240,255,0.15)" stroke="rgba(255,255,255,0.62)" stroke-width="1.5"/>
-      <path d="M418,96 L436,100 L436,118 L418,114 Z" fill="rgba(255,80,80,0.25)" stroke="rgba(255,120,120,0.65)" stroke-width="1.5"/>
-    </svg>`,
+  'kia-sportage-phev': `<img src="images/kia-sportage-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="Kia Sportage PHEV">`,
 };
 
 // ── Manufacturer logos — shown in specs panel, below stats ────────────────────
