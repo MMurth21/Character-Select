@@ -8,7 +8,7 @@ const cars = [
     year: '2003',
     vibe: 'Sophisticated',
     color: '#003399',
-    glowColor: '#2255cc',
+    glowColor: '#FFA500',
     engine: 'S62 V8 · 5.0L',
     power: '394 hp / 292 kw',
     torque: '500 Nm / 369 lb-ft',
