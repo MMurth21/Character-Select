@@ -24,7 +24,7 @@ const cars = [
     year: '997 · 2006',
     vibe: 'Atmospheric Dominance',
     color: '#001B3A',
-    glowColor: '#2244aa',
+    glowColor: '#CC0000',
     engine: 'M97 Flat-6 · 3.6L',
     power: '325 hp / 242 kw',
     torque: '370 Nm / 273 lb-ft',
