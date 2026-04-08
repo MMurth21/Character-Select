@@ -10,6 +10,10 @@
   --transition-bg: 350ms ease;
 }
 
+html {
+  background: #1c1c1e;
+}
+
 body {
   background: #090a0e;
   min-height: 100vh;
