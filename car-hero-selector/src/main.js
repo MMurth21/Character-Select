@@ -69,7 +69,9 @@ const cars = [
 
 // ── SVG Car Silhouettes ───────────────────────────────────────────────────────
 const silhouettes = {
-  'bmw-e39-m5': `
+  'bmw-e39-m5': `<img src="images/bmw-e39-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="BMW E39 M5">`,
+
+  'bmw-e39-m5-svg': `
     <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" class="car-svg">
 
       <!-- Ground shadow -->
