@@ -605,6 +605,7 @@ const cards = cars.map((car, i) => {
   const card = document.createElement('div');
   card.className = 'rolo-card' + (i === 0 ? ' active' : '');
   card.dataset.index = i;
+  card.dataset.carId = car.id;
 
   const specItems = specDefs.map(([label, key]) => `
     <div class="spec-item">

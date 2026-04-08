@@ -398,6 +398,26 @@ body {
   to   { transform: rotateY(360deg); }
 }
 
+/* ── BMW specs panel — amber glow text ───────────────────────────────── */
+@keyframes amber-pulse {
+  0%, 100% { text-shadow: 0 0 6px rgba(255,165,0,0.5), 0 0 14px rgba(255,140,0,0.3); }
+  50%       { text-shadow: 0 0 10px rgba(255,165,0,0.8), 0 0 24px rgba(255,140,0,0.5), 0 0 40px rgba(255,100,0,0.2); }
+}
+
+[data-car-id="bmw-e39-m5"] .card-specs-panel .specs-car-name,
+[data-car-id="bmw-e39-m5"] .card-specs-panel .spec-val {
+  color: #FFA500;
+  animation: amber-pulse 2.4s ease-in-out infinite;
+}
+
+[data-car-id="bmw-e39-m5"] .card-specs-panel .spec-key {
+  color: rgba(255,180,50,0.55);
+}
+
+[data-car-id="bmw-e39-m5"] .card-specs-panel .specs-close {
+  color: rgba(255,165,0,0.45);
+}
+
 /* ── Vibe pulse animations ───────────────────────────────────────────── */
 @keyframes vibe-pulse {
   0%   { text-shadow: none; }
