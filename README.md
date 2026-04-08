@@ -203,17 +203,29 @@ Without AI: the hand-coded SVG silhouettes would have taken significantly longer
 
 | Date | Commit | Description |
 |------|--------|-------------|
+| Apr 8 | `57f0347` | Porsche specs text → gold `#D4AF37` with gold glow pulse |
+| Apr 8 | `83cc02e` | Porsche specs text → Guards Red (later changed to gold) |
+| Apr 8 | `56cd4c7` | Remove all spinning wheel code (data, template, CSS) — fully reverted |
+| Apr 8 | `83fb634` | Restore standard vibe-pulse to Porsche "Atmospheric Dominance" tag |
+| Apr 8 | `6d13c7e` | Remove Porsche-specific expand pulse from vibe tag |
+| Apr 8 | `83da0ea` | Toyota vibe dot → brown `#8B4513` |
+| Apr 8 | `62c237e` | BMW vibe dot → amber `#FFA500` |
+| Apr 8 | `09c36df` | Porsche vibe dot → Guards Red `#CC0000` |
+| Apr 8 | `5e07d24` | Toyota specs panel text → jet black `#0a0a0a` + white glow |
+| Apr 8 | `92626e7` | Kia specs panel text → violet `#8A2BE2` + violet glow |
+| Apr 8 | `2d30237` | BMW specs panel text → amber `#FFA500` + amber glow pulse |
+| Apr 8 | `eb4b511` | Full README: design intent, AI log, resistance records, reflection |
 | Apr 8 | `bd68cc2` | BMW specs background → M leather texture |
 | Apr 8 | `cc81d4a` | Header font → Exo 2 ExtraBold Italic (racing aesthetic) |
-| Apr 8 | `3c3f4f7` | Porsche specs background → Carrera leather emboss texture |
-| Apr 8 | `2a66971` | All 4 car icons → rembg-processed PNGs with real alpha transparency |
-| Apr 8 | `4764153` | BMW E39 M5 → real photo (replaced SVG silhouette) |
-| Apr 8 | `6dcc655` | Kia Sportage → real photo |
-| Apr 8 | `5fb9b61` | Toyota Sienna → real photo |
-| Apr 8 | `c978861` | Porsche 997 → real photo (replaced SVG silhouette) |
-| Apr 8 | `ba039e1` | Charcoal body background fix (html base color) |
-| Apr 8 | `01db1cf` | BMW + Porsche spec backgrounds added to car-hero-selector build |
-| Apr 8 | `bbf0ac2` | BMW M background first attempt (root index.html) |
+| Apr 8 | `3c3f4f7` | Porsche specs background → Carrera leather emboss (no crest) |
+| Apr 8 | `2a66971` | All 4 car icons → rembg AI-processed PNGs with real alpha transparency |
+| Apr 8 | `4764153` | BMW E39 M5 → real side-profile photo |
+| Apr 8 | `6dcc655` | Kia Sportage → real side-profile photo |
+| Apr 8 | `5fb9b61` | Toyota Sienna → real side-profile photo |
+| Apr 8 | `c978861` | Porsche 997 → real side-profile photo |
+| Apr 8 | `ba039e1` | Charcoal body background fix (`html` base color) |
+| Apr 8 | `01db1cf` | BMW + Porsche spec backgrounds migrated to car-hero-selector build |
+| Apr 8 | `bbf0ac2` | BMW M background first attempt (wrong path — corrected in later commits) |
 | Apr 6 | `0792700` | BMW E39 M5 pixel-art 3/4-view silhouette (Interlagos Blue) |
 | Mar 30 | `0c0ed4d` | Fix BMW vibe-tags hidden by backdrop-filter compositing layers |
 | Mar 30 | `d7e78a9` | Add amber vibe-tags to BMW card |
