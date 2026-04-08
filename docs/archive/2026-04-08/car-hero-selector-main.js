@@ -258,7 +258,7 @@ const silhouettes = {
 
     </svg>`,
 
-  'porsche-997': `<img src="images/porsche-997-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:lighten;" alt="Porsche 997">`,
+  'porsche-997': `<img src="images/porsche-997-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="Porsche 997">`,
 
   'toyota-sienna': `
     <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" class="car-svg">
