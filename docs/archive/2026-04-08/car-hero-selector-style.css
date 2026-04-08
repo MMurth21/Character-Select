@@ -211,33 +211,6 @@ body {
   position: relative;
 }
 
-/* ── Wheel spinners ──────────────────────────────────────────────────── */
-@keyframes wheel-rotate {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.wheel-spin {
-  position: absolute;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  animation: wheel-rotate 1.1s linear infinite;
-  background:
-    conic-gradient(
-      transparent  0deg,  transparent  28deg,
-      rgba(255,255,255,0.30) 28deg, rgba(255,255,255,0.30) 34deg,
-      transparent  34deg, transparent  100deg,
-      rgba(255,255,255,0.30) 100deg, rgba(255,255,255,0.30) 106deg,
-      transparent  106deg, transparent  172deg,
-      rgba(255,255,255,0.30) 172deg, rgba(255,255,255,0.30) 178deg,
-      transparent  178deg, transparent  244deg,
-      rgba(255,255,255,0.30) 244deg, rgba(255,255,255,0.30) 250deg,
-      transparent  250deg, transparent  316deg,
-      rgba(255,255,255,0.30) 316deg, rgba(255,255,255,0.30) 322deg,
-      transparent  322deg, transparent  360deg
-    );
-  box-shadow: 0 0 0 2px rgba(255,255,255,0.18);
-}
 
 .rolo-card.active .car-silhouette-wrap {
   animation: float 4s ease-in-out infinite;
