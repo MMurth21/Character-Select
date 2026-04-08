@@ -260,33 +260,7 @@ const silhouettes = {
 
   'porsche-997': `<img src="images/porsche-997-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="Porsche 997">`,
 
-  'toyota-sienna': `
-    <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" class="car-svg">
-      <defs>
-        <linearGradient id="g-sienna" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.14)"/>
-          <stop offset="100%" stop-color="rgba(255,255,255,0.04)"/>
-        </linearGradient>
-      </defs>
-      <path d="M52,145 L52,108 Q65,90 95,80 Q125,62 165,58 L165,52 Q200,44 320,44 Q360,44 400,65 Q428,82 434,108 L434,145 Z" fill="url(#g-sienna)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
-      <rect x="165" y="44" width="155" height="14" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.40)" stroke-width="1"/>
-      <path d="M165,58 Q168,48 175,44 L230,44 L230,58 Z" fill="rgba(150,200,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-      <path d="M320,44 L370,44 Q375,48 380,58 L320,58 Z" fill="rgba(150,200,255,0.10)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-      <rect x="230" y="58" width="90" height="50" rx="4" fill="rgba(150,200,255,0.08)" stroke="rgba(255,255,255,0.20)" stroke-width="1"/>
-      <rect x="175" y="58" width="55" height="50" rx="4" fill="rgba(150,200,255,0.08)" stroke="rgba(255,255,255,0.20)" stroke-width="1"/>
-      <path d="M52,108 Q70,100 95,88 L165,80" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-      <rect x="52" y="140" width="382" height="8" rx="2" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-      <ellipse cx="128" cy="145" rx="44" ry="10" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
-      <ellipse cx="370" cy="145" rx="44" ry="10" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
-      <circle cx="128" cy="152" r="35" fill="rgba(8,8,12,0.72)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
-      <circle cx="128" cy="152" r="20" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>
-      <circle cx="128" cy="152" r="6" fill="rgba(255,255,255,0.45)"/>
-      <circle cx="370" cy="152" r="35" fill="rgba(8,8,12,0.72)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
-      <circle cx="370" cy="152" r="20" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="1.5"/>
-      <circle cx="370" cy="152" r="6" fill="rgba(255,255,255,0.45)"/>
-      <rect x="55" y="96" width="26" height="12" rx="3" fill="rgba(220,240,255,0.20)" stroke="rgba(255,255,255,0.58)" stroke-width="1.5"/>
-      <rect x="418" y="90" width="16" height="30" rx="2" fill="rgba(255,80,80,0.25)" stroke="rgba(255,120,120,0.60)" stroke-width="1.5"/>
-    </svg>`,
+  'toyota-sienna': `<img src="images/toyota-sienna-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="Toyota Sienna">`,
 
   'kia-sportage-phev': `
     <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" class="car-svg">
