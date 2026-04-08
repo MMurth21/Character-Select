@@ -440,24 +440,24 @@ body {
   color: rgba(138,43,226,0.45);
 }
 
-/* ── Porsche specs panel — Guards Red glow text ─────────────────────── */
-@keyframes guards-red-pulse {
-  0%, 100% { text-shadow: 0 0 6px rgba(204,0,0,0.55), 0 0 14px rgba(204,0,0,0.3); }
-  50%       { text-shadow: 0 0 10px rgba(204,0,0,0.9), 0 0 24px rgba(204,0,0,0.55), 0 0 42px rgba(180,0,0,0.25); }
+/* ── Porsche specs panel — gold glow text ────────────────────────────── */
+@keyframes gold-pulse {
+  0%, 100% { text-shadow: 0 0 6px rgba(212,175,55,0.55), 0 0 14px rgba(212,175,55,0.3); }
+  50%       { text-shadow: 0 0 10px rgba(212,175,55,0.9), 0 0 24px rgba(212,175,55,0.55), 0 0 42px rgba(180,140,0,0.25); }
 }
 
 [data-car-id="porsche-997"] .card-specs-panel .specs-car-name,
 [data-car-id="porsche-997"] .card-specs-panel .spec-val {
-  color: #CC0000;
-  animation: guards-red-pulse 2.4s ease-in-out infinite;
+  color: #D4AF37;
+  animation: gold-pulse 2.4s ease-in-out infinite;
 }
 
 [data-car-id="porsche-997"] .card-specs-panel .spec-key {
-  color: rgba(204,0,0,0.55);
+  color: rgba(212,175,55,0.55);
 }
 
 [data-car-id="porsche-997"] .card-specs-panel .specs-close {
-  color: rgba(204,0,0,0.45);
+  color: rgba(212,175,55,0.45);
 }
 
 /* ── BMW specs panel — amber glow text ───────────────────────────────── */
