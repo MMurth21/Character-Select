@@ -69,7 +69,7 @@ const cars = [
 
 // ── SVG Car Silhouettes ───────────────────────────────────────────────────────
 const silhouettes = {
-  'bmw-e39-m5': `<img src="images/bmw-e39-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="BMW E39 M5">`,
+  'bmw-e39-m5': `<img src="images/bmw-e39-photo.png" class="car-svg" style="object-fit:contain;" alt="BMW E39 M5">`,
 
   'bmw-e39-m5-svg': `
     <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" class="car-svg">
@@ -260,11 +260,11 @@ const silhouettes = {
 
     </svg>`,
 
-  'porsche-997': `<img src="images/porsche-997-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="Porsche 997">`,
+  'porsche-997': `<img src="images/porsche-997-photo.png" class="car-svg" style="object-fit:contain;" alt="Porsche 997">`,
 
-  'toyota-sienna': `<img src="images/toyota-sienna-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="Toyota Sienna">`,
+  'toyota-sienna': `<img src="images/toyota-sienna-photo.png" class="car-svg" style="object-fit:contain;" alt="Toyota Sienna">`,
 
-  'kia-sportage-phev': `<img src="images/kia-sportage-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:multiply;" alt="Kia Sportage PHEV">`,
+  'kia-sportage-phev': `<img src="images/kia-sportage-photo.png" class="car-svg" style="object-fit:contain;" alt="Kia Sportage PHEV">`,
 };
 
 // ── Manufacturer logos — shown in specs panel, below stats ────────────────────
