@@ -32,7 +32,7 @@ const cars = [
     drivetrain: 'RWD · 6-Speed Manual',
     topSpeed: '285 km/h',
     gradient: 'linear-gradient(150deg, #001B3A 0%, #000e22 55%, #000000 100%)',
-    specsBg: 'images/porsche-bg.jpg',
+    specsBg: 'images/porsche-carrera-leather.jpg',
     isPorsche: true,
   },
   {
