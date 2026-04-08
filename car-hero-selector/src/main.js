@@ -41,7 +41,7 @@ const cars = [
     year: '2011',
     vibe: 'Practical',
     color: '#708090',
-    glowColor: '#9aaabb',
+    glowColor: '#8B4513',
     engine: '2GR-FE V6 · 3.5L',
     power: '266 hp / 198 kw',
     torque: '332 Nm / 245 lb-ft',
