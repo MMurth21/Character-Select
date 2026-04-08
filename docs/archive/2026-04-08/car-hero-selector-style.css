@@ -42,17 +42,23 @@ body {
 }
 
 .header-label {
-  font-weight: 900;
-  font-size: 12px;
-  letter-spacing: 0.45em;
-  color: rgba(255,255,255,0.9);
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.95);
+  text-transform: uppercase;
 }
 
 .header-sub {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  font-style: italic;
   font-size: 9px;
-  letter-spacing: 0.28em;
-  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.32);
+  text-transform: uppercase;
 }
 
 /* ── Stage ───────────────────────────────────────────────────────────── */
