@@ -398,6 +398,26 @@ body {
   to   { transform: rotateY(360deg); }
 }
 
+/* ── Toyota specs panel — jet black glow text ───────────────────────── */
+@keyframes jet-black-pulse {
+  0%, 100% { text-shadow: 0 0 6px rgba(255,255,255,0.45), 0 0 14px rgba(200,200,200,0.2); }
+  50%       { text-shadow: 0 0 10px rgba(255,255,255,0.75), 0 0 22px rgba(220,220,220,0.4), 0 0 38px rgba(180,180,180,0.2); }
+}
+
+[data-car-id="toyota-sienna"] .card-specs-panel .specs-car-name,
+[data-car-id="toyota-sienna"] .card-specs-panel .spec-val {
+  color: #0a0a0a;
+  animation: jet-black-pulse 2.4s ease-in-out infinite;
+}
+
+[data-car-id="toyota-sienna"] .card-specs-panel .spec-key {
+  color: rgba(10,10,10,0.6);
+}
+
+[data-car-id="toyota-sienna"] .card-specs-panel .specs-close {
+  color: rgba(10,10,10,0.45);
+}
+
 /* ── Kia specs panel — violet glow text ─────────────────────────────── */
 @keyframes violet-pulse {
   0%, 100% { text-shadow: 0 0 6px rgba(138,43,226,0.55), 0 0 14px rgba(138,43,226,0.3); }
