@@ -16,7 +16,7 @@ const cars = [
     drivetrain: 'RWD · 6-Speed Manual',
     topSpeed: '250 km/h (limited)',
     gradient: 'linear-gradient(150deg, #003399 0%, #001a66 55%, #000820 100%)',
-    specsBg: 'images/bmw-m-bg.jpg',
+    specsBg: 'images/bmw-m-leather.jpg',
   },
   {
     id: 'porsche-997',
