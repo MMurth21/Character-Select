@@ -586,7 +586,7 @@ function goTo(newIndex) {
   const vibeEl = cards[currentIndex].querySelector('.car-vibe');
   vibeEl.classList.remove('pulse', 'pulse-porsche');
   void vibeEl.offsetWidth;
-  vibeEl.classList.add(car.isPorsche ? 'pulse-porsche' : 'pulse');
+  if (!car.isPorsche) vibeEl.classList.add('pulse');
 
   setTimeout(() => { isAnimating = false; }, 500);
 }
