@@ -258,32 +258,7 @@ const silhouettes = {
 
     </svg>`,
 
-  'porsche-997': `
-    <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" class="car-svg">
-      <defs>
-        <linearGradient id="g-997" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.24)"/>
-          <stop offset="100%" stop-color="rgba(255,255,255,0.05)"/>
-        </linearGradient>
-      </defs>
-      <path d="M75,138 L75,108 Q100,88 140,76 Q185,50 230,42 Q275,36 315,44 Q355,52 390,80 Q415,95 420,120 L420,138 Z" fill="url(#g-997)" stroke="rgba(255,255,255,0.60)" stroke-width="1.5"/>
-      <path d="M155,76 Q195,46 240,38 Q280,33 315,44 Q352,54 385,80 Q405,98 415,120" fill="none" stroke="rgba(255,255,255,0.68)" stroke-width="2"/>
-      <path d="M158,76 Q198,50 242,42 Q278,37 308,48 L335,76 Z" fill="rgba(150,200,255,0.13)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-      <path d="M335,76 Q370,82 392,105 L340,120 Z" fill="rgba(150,200,255,0.10)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-      <path d="M75,108 Q105,100 140,90 L158,76" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-      <path d="M78,120 Q200,112 390,118" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-      <path d="M390,80 Q418,88 420,120" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="2"/>
-      <ellipse cx="148" cy="138" rx="42" ry="9" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="1.5"/>
-      <ellipse cx="362" cy="138" rx="46" ry="10" fill="none" stroke="rgba(255,255,255,0.42)" stroke-width="1.5"/>
-      <circle cx="148" cy="143" r="33" fill="rgba(8,8,12,0.78)" stroke="rgba(255,255,255,0.58)" stroke-width="2"/>
-      <circle cx="148" cy="143" r="18" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-      <circle cx="148" cy="143" r="5" fill="rgba(255,255,255,0.65)"/>
-      <circle cx="362" cy="143" r="37" fill="rgba(8,8,12,0.78)" stroke="rgba(255,255,255,0.58)" stroke-width="2"/>
-      <circle cx="362" cy="143" r="21" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-      <circle cx="362" cy="143" r="6" fill="rgba(255,255,255,0.65)"/>
-      <path d="M78,96 Q92,90 110,92" fill="none" stroke="rgba(220,240,255,0.85)" stroke-width="3"/>
-      <path d="M400,95 L418,108" stroke="rgba(255,80,80,0.85)" stroke-width="4.5"/>
-    </svg>`,
+  'porsche-997': `<img src="images/porsche-997-photo.jpg" class="car-svg" style="object-fit:contain;mix-blend-mode:lighten;" alt="Porsche 997">`,
 
   'toyota-sienna': `
     <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" class="car-svg">
