@@ -631,9 +631,6 @@ const cards = cars.map((car, i) => {
       </div>
       <div class="car-silhouette-wrap">
         ${silhouettes[car.id]}
-        ${(car.wheels || []).map(w => `
-          <div class="wheel-spin" style="left:${w.x}%;top:${w.y}%;width:${w.r*2}%;padding-bottom:${w.r*2}%;"></div>
-        `).join('')}
       </div>
       <div class="car-vibe-row">
         <div class="car-vibe">
